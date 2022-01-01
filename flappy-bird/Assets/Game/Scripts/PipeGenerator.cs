@@ -5,7 +5,7 @@ using UnityEngine;
 public class PipeGenerator : MonoBehaviour
 {
     [SerializeField] GameObject pipesPrefab;
-    private int time = 100;
+    private int time = 200;
     // Start is called before the first frame update
     void Start()
     {
