@@ -13,11 +13,16 @@ public class PipeGenerator : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         time++;
-        GameObject pipe = Instantiate(pipesPrefab, new Vector2(pipesPrefab.transform.position.x, pipesPrefab.transform.position.y + Random.Range(-2, 2)), pipesPrefab.transform.rotation);
-        Destroy(pipe, 5);
+        if(time >= 100)
+        {
+            time = 0;
+            GameObject pipe = Instantiate(pipesPrefab, new Vector2(pipesPrefab.transform.position.x, pipesPrefab.transform.position.y + Random.Range(-2, 2)), pipesPrefab.transform.rotation);
+            Destroy(pipe, 5);
+        }
+        
         
     }
 }
