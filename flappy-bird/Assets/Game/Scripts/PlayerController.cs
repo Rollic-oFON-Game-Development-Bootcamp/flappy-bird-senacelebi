@@ -7,6 +7,8 @@ using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
+    public GameObject gameEndUI;
+
     [SerializeField] TextMeshProUGUI scoreText;
     private Rigidbody2D _playerRB;
     private int _score = 0;
@@ -31,16 +33,11 @@ public class PlayerController : MonoBehaviour
         }
         
     }
-    private void OnCollisionEnter2D()
-    {
-        _score = 0;
-        _isDead = true;
-        scoreText.text = "0";
-    }
+    
 
-    private void OnTriggerExit2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("borderTrigger"))
+        if (collision.gameObject.CompareTag("borderTrigger"))
         {
             _score++;
             scoreText.text = _score.ToString();
@@ -48,7 +45,14 @@ public class PlayerController : MonoBehaviour
 
         if (collision.gameObject.CompareTag("floorTrigger") || collision.gameObject.CompareTag("pipeTrigger"))
         {
-            SceneManager.LoadScene("GameOver");
+            //SceneManager.LoadScene("GameOver");
+            gameEndUI.SetActive(true);
         }
+    }
+
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        
     }
 }
